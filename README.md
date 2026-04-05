@@ -48,5 +48,7 @@ college-event-registration/
 ```
 ## Screenshots
 
-![Preview 1](assets/screenshots/ss-1.png)
-![Preview 2](assets/screenshots/ss-2.png)
+![Preview 1](ss-1.png)
+![Preview 2](ss-2.png)
+![Preview 2](ss-3.png)
+![Preview 2](ss-4.png)
