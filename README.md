@@ -37,6 +37,7 @@ for college events such as Tech Fest, Cultural Events, and Workshops.
 - **Firestore** — NoSQL cloud database
 
 ## Project Structure
+```
 college-event-registration/
 ├── app.py
 ├── database.db
@@ -44,3 +45,4 @@ college-event-registration/
     ├── index.html
     ├── success.html
     └── registrations.html
+```
