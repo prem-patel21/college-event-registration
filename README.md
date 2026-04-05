@@ -46,3 +46,7 @@ college-event-registration/
     ├── success.html
     └── registrations.html
 ```
+## Screenshots
+
+![Preview 1](assets/screenshots/ss-1.png)
+![Preview 2](assets/screenshots/ss-2.png)
