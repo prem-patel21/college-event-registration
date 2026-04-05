@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>College Event Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0D0F1A;
+      --card: #13162B;
+      --border: rgba(99, 102, 241, 0.2);
+      --accent: #6366F1;
+      --accent2: #22D3EE;
+      --text: #E8EAF6;
+      --muted: #8B8FA8;
+      --success: #22D3EE;
+      --error: #F87171;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decorative background blobs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -200px; right: -200px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid var(--border);
+      color: var(--accent2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #E8EAF6 30%, #6366F1 80%, #22D3EE);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px 48px;
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+      animation: fadeUp 0.7s ease both 0.1s;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(99,102,241,0.08);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 21px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.3), transparent 50%, rgba(34,211,238,0.15));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    input::placeholder { color: var(--muted); }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+      background: rgba(99,102,241,0.06);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+    }
+
+    select option { background: #13162B; color: var(--text); }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(99,102,241,0.12);
+      margin: 28px 0;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      background: linear-gradient(135deg, #6366F1, #818CF8);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.3);
+    }
+
+    button[type="submit"]::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.45);
+    }
+
+    button[type="submit"]:hover::after { opacity: 1; }
+    button[type="submit"]:active { transform: translateY(0); }
+
+    .nav-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .nav-link a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-link a:hover { opacity: 1; text-decoration: underline; }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 520px) {
+      .card { padding: 28px 22px; }
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">🎓 University Events 2025</div>
+    <h1>Event Registration</h1>
+    <p>Fill in your details to secure your spot</p>
+  </header>
+
+  <div class="card">
+    <form action="/register" method="POST">
+
+      <div class="form-group">
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name" placeholder="e.g. Rahul Sharma" required />
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@college.edu" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="9876543210" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="college">College / Department</label>
+        <input type="text" id="college" name="college" placeholder="e.g. B.Tech CSE, Semester 2" required />
+      </div>
+
+      <div class="form-group">
+        <label for="event">Select Event</label>
+        <select id="event" name="event" required>
+          <option value="" disabled selected>Choose an event...</option>
+          <option value="Tech Fest 2025">🖥️ Tech Fest 2025</option>
+          <option value="Cultural Night">🎭 Cultural Night</option>
+          <option value="Web Dev Workshop">💻 Web Dev Workshop</option>
+          <option value="AI & Cloud Workshop">☁️ AI & Cloud Workshop</option>
+          <option value="Sports Meet">⚽ Sports Meet</option>
+          <option value="Hackathon 24Hr">🚀 Hackathon 24Hr</option>
+        </select>
+      </div>
+
+      <hr class="divider" />
+
+      <button type="submit">Register Now →</button>
+    </form>
+  </div>
+
+  <div class="nav-link">
+    <a href="/registrations">View all registrations →</a>
+  </div>
+
+</body>
+</html>

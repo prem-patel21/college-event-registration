@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Successful!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0D0F1A;
+      --card: #13162B;
+      --border: rgba(34, 211, 238, 0.2);
+      --accent: #6366F1;
+      --accent2: #22D3EE;
+      --text: #E8EAF6;
+      --muted: #8B8FA8;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(34,211,238,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 48px;
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4), 0 0 60px rgba(34,211,238,0.06);
+    }
+
+    .icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(34,211,238,0.1);
+      border: 2px solid rgba(34,211,238,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 36px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E8EAF6, #22D3EE);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .info-box {
+      background: rgba(99,102,241,0.07);
+      border: 1px solid rgba(99,102,241,0.15);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(99,102,241,0.08);
+    }
+
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      min-width: 70px;
+    }
+
+    .info-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .btn-home {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #6366F1, #818CF8);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+      margin-right: 10px;
+    }
+
+    .btn-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(99,102,241,0.45);
+    }
+
+    .btn-view {
+      display: inline-block;
+      padding: 14px 28px;
+      background: rgba(34,211,238,0.1);
+      color: var(--accent2);
+      text-decoration: none;
+      border-radius: 12px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid rgba(34,211,238,0.25);
+      transition: background 0.2s;
+    }
+    .btn-view:hover { background: rgba(34,211,238,0.18); }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.3); }
+      50%       { box-shadow: 0 0 0 12px rgba(34,211,238,0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">✓</div>
+    <h1>You're Registered!</h1>
+    <p class="subtitle">Your spot has been confirmed. See you at the event!</p>
+
+    <div class="info-box">
+      <div class="info-row">
+        <span class="info-label">Name</span>
+        <span class="info-value">{{ name }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Event</span>
+        <span class="info-value">{{ event }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Status</span>
+        <span class="info-value" style="color: #22D3EE;">✓ Confirmed</span>
+      </div>
+    </div>
+
+    <a href="/" class="btn-home">← Register Another</a>
+    <a href="/registrations" class="btn-view">View All →</a>
+  </div>
+</body>
+</html>

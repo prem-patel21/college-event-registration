@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Registrations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0D0F1A;
+      --card: #13162B;
+      --border: rgba(99, 102, 241, 0.15);
+      --accent: #6366F1;
+      --accent2: #22D3EE;
+      --text: #E8EAF6;
+      --muted: #8B8FA8;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      padding: 48px 24px;
+    }
+
+    header {
+      max-width: 960px;
+      margin: 0 auto 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .back-btn {
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.25);
+      color: var(--accent2);
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .back-btn:hover { background: rgba(99,102,241,0.2); }
+
+    .count-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .table-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: rgba(99,102,241,0.1);
+    }
+
+    th {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 14px 20px;
+      font-size: 14px;
+      color: var(--text);
+      border-bottom: 1px solid rgba(99,102,241,0.06);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr:hover td { background: rgba(99,102,241,0.04); }
+
+    .event-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      background: rgba(34,211,238,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(34,211,238,0.2);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--muted);
+    }
+
+    .empty p { font-size: 16px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>All Registrations</h1>
+      <p class="count-badge">{{ registrations|length }} student(s) registered</p>
+    </div>
+    <a href="/" class="back-btn">← Back to Form</a>
+  </header>
+
+  <div class="table-wrap">
+    {% if registrations %}
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>College / Dept.</th>
+          <th>Event</th>
+          <th>Registered At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in registrations %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td><strong>{{ row[1] }}</strong></td>
+          <td>{{ row[2] }}</td>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[5] }}</td>
+          <td><span class="event-tag">{{ row[4] }}</span></td>
+          <td>{{ row[6] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty">
+      <div style="font-size:40px">📋</div>
+      <p>No registrations yet. Be the first to sign up!</p>
+    </div>
+    {% endif %}
+  </div>
+
+</body>
+</html>
