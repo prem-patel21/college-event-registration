@@ -5,8 +5,12 @@ import os
 app = Flask(__name__)
 
 # ── Database setup ──────────────────────────────────────
+"""
+"The line sqlite3.connect('database.db') inside our init_db() function creates the database file automatically if it does not exist.
+ This function is called every time we run app.py using if __name__ == '__main__': init_db()"
+"""
 def init_db():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('database.db') 
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS registrations (
