@@ -61,16 +61,16 @@ college-event-registration/
 ## 📸 Screenshots
 
 
-![Registration Form](assets/screenshots/screenshot1.png)
+![Registration Form](assets/images/screenshot1.png)
 
 
-![Registrations details to be filled](assets/screenshots/screenshot2.png)
+![Registrations details to be filled](assets/images/screenshot2.png)
 
 
-![Success Page](assets/screenshots/screenshot3.png)
+![Success Page](assets/images/screenshot3.png)
 
 
-![Registrations already done](assets/screenshots/screenshot4.png)
+![Registrations already done](assets/images/screenshot4.png)
 
 ---
 
